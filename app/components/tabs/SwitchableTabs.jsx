@@ -8,7 +8,7 @@ const SwitchableTabs = ({ children }) => {
   };
 
   return (
-    <div className="max-w-[1000px] mx-auto mt-8">
+    <div className="max-w-[1100px] mx-auto mt-8">
       <div className="flex">
         <div
           className={`flex-1 text-center py-2 ${
@@ -28,7 +28,7 @@ const SwitchableTabs = ({ children }) => {
         </div>
       </div>
       <div style={{ borderBottom: "2px solid white" }}></div>
-      <div className="bg-white rounded-b-lg mt-4">
+      <div className="rounded-b-lg mt-4">
         {children?.map((child, index) => {
           return (
             <div

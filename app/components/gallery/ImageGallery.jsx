@@ -2,17 +2,22 @@ import React from "react";
 import LightGallery from "lightgallery/react";
 import lgZoom from "lightgallery/plugins/zoom";
 import lgVideo from "lightgallery/plugins/video";
+import lgRotate from "lightgallery/plugins/rotate";
 
 const GalleryItem = ({ src, subHtml }) => (
   <a data-src={src} data-sub-html={subHtml} className="gallery-item" href={src}>
-    <img className="img-responsive w-[100px]" src={src} />
+    <img
+      className="w-[300px] h-[300px] m-6 object-cover object-center"
+      style={{ border: "10px solid #2e2e2e" }}
+      src={src}
+    />
   </a>
 );
 
 const ImageGallery = () => {
   return (
-    <div className="max-w-md mx-auto mt-8">
-      <LightGallery plugins={[lgZoom, lgVideo]} mode="lg-fade">
+    <div className="mx-auto mt-8">
+      <LightGallery plugins={[lgZoom, lgVideo, lgRotate]} mode="lg-fade">
         {imageArray.map((image, index) => (
           <GalleryItem key={index} src={image.src} subHtml={image.subHtml} />
         ))}
