@@ -1,6 +1,12 @@
 import React, { useState } from "react";
+import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import { axiosPrivate } from "../../api/axios";
 
 const LoginForm = () => {
+  const { setAuth } = useAuth();
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,8 +20,26 @@ const LoginForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Username:", username);
-    console.log("Password:", password);
+    try {
+      const res = await axiosPrivate.post("/auth/login", {
+        email: username,
+        password,
+      });
+      if (!res.data) return;
+      setAuth({
+        token: res.data.token,
+        user: res.data.user,
+        isAuthenticated: true,
+      });
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      axiosPrivate.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${res.data.token}`;
+      navigate("/");
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
