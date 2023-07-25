@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { axiosPrivate } from "../../api/axios";
 
 const LoginForm = () => {
-  const { setAuth } = useAuth();
+  const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");

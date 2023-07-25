@@ -8,10 +8,10 @@ const SwitchableTabs = ({ children }) => {
   };
 
   return (
-    <div className="max-w-[1100px] mx-auto mt-8">
+    <div className="max-w-[1100px] mx-auto">
       <div className="flex">
         <div
-          className={`flex-1 text-center py-2 ${
+          className={`flex-1 text-center py-3 ${
             activeTab === 1 ? "bg-white text-black" : "text-white"
           } rounded-t-full cursor-pointer`}
           onClick={() => handleTabClick(1)}

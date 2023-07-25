@@ -2,6 +2,13 @@ import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import axiosPrivate from "../api/axios";
+
+const verifyGoogleAuth = async (auth, setAuth) => {};
+
+const verifyStorage = async (auth, setAuth, navigate) => {
+  return true;
+};
 
 const PersistLogin = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -9,24 +16,20 @@ const PersistLogin = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setIsLoading(true);
-    const verifyStorage = async () => {
-      const token = localStorage.getItem("token");
-      const user = JSON.parse(localStorage.getItem("user"));
-      setIsLoading(false);
-      if (!token || !user) {
-        navigate("/login");
-        return false;
+    const checkAuth = async () => {
+      setIsLoading(true);
+
+      if (auth?.viaGoogle) {
+        await verifyGoogleAuth(auth, setAuth);
+      } else if (!auth?.isAuthenticated) {
+        await verifyStorage(auth, setAuth, navigate);
       }
-      setAuth({
-        user,
-        token,
-        isAuthenticated: true,
-      });
-      return true;
+
+      setIsLoading(false);
     };
-    auth?.isAuthenticated ? setIsLoading(false) : verifyStorage();
-  }, []);
+
+    checkAuth();
+  }, [auth, setAuth, navigate]);
 
   return <>{isLoading ? <div>loading..</div> : <Outlet />}</>;
 };

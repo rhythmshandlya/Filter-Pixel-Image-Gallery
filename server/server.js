@@ -1,12 +1,9 @@
-const dotenv = require('dotenv');
 const app = require('./app');
 const mongoose = require('mongoose');
-
-// Load environment variables from config.env
-dotenv.config({ path: './.env' });
+const config = require('./config');
 
 // Connect to the MongoDB server
-const uri = process.env.DATABASE_URI;
+const uri = config.DATABASE_URI;
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
@@ -23,7 +20,8 @@ db.on('error', (error) =>
 db.once('open', () => console.log('Connected to the MongoDB database'));
 
 // Start the server
-const PORT = process.env.PORT || 8000;
+const PORT = config.PORT || 8000;
+
 const server = app.listen(PORT, () => {
   console.log(`API running on port ${PORT}`);
 });
