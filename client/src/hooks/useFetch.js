@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { axiosPrivate } from "../api/axios";
 
 const useFetch = (url) => {
   const [data, setData] = useState(null);
@@ -11,7 +11,7 @@ const useFetch = (url) => {
       setIsLoading(true);
       setError(null);
       try {
-        const response = await axios.get(url);
+        const response = await axiosPrivate.get(url);
         setData(response.data);
       } catch (error) {
         setError(error.message || "Something went wrong");

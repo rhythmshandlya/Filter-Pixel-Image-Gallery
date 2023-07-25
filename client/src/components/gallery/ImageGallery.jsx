@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import LightGallery from "lightgallery/react";
 import lgZoom from "lightgallery/plugins/zoom";
 import lgVideo from "lightgallery/plugins/video";
 import lgRotate from "lightgallery/plugins/rotate";
+import useFetch from "../../hooks/useFetch";
 
 const GalleryItem = ({ src, subHtml }) => (
   <a data-src={src} data-sub-html={subHtml} className="gallery-item" href={src}>
@@ -10,15 +11,23 @@ const GalleryItem = ({ src, subHtml }) => (
       className="w-[300px] h-[300px] m-6 object-cover object-center"
       style={{ border: "10px solid #2e2e2e" }}
       src={src}
+      alt=""
     />
   </a>
 );
 
 const ImageGallery = () => {
-  return (
+  const [URL, setURL] = useState("/s3?page=1&limit=3");
+  const { data, isLoading, error } = useFetch(URL);
+
+  return isLoading ? (
+    <div>Loading...</div>
+  ) : error ? (
+    <div>{error}</div>
+  ) : (
     <div className="mx-auto mt-8">
       <LightGallery plugins={[lgZoom, lgVideo, lgRotate]} mode="lg-fade">
-        {imageArray.map((image, index) => (
+        {data?.map((image, index) => (
           <GalleryItem key={index} src={image.src} subHtml={image.subHtml} />
         ))}
       </LightGallery>

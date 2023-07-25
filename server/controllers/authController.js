@@ -32,7 +32,9 @@ exports.signup = catchAsync(async (req, res, next) => {
     user: {
       id: newUser._id,
       name: newUser.name,
-      email: newUser.email
+      email: newUser.email,
+      role: newUser.role,
+      dp: newUser.dp
     },
     token
   });
