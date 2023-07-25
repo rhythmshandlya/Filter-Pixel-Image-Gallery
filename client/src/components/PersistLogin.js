@@ -13,7 +13,6 @@ const PersistLogin = () => {
     const verifyStorage = async () => {
       const token = localStorage.getItem("token");
       const user = JSON.parse(localStorage.getItem("user"));
-      console.log({ token, user });
       setIsLoading(false);
       if (!token || !user) {
         navigate("/login");

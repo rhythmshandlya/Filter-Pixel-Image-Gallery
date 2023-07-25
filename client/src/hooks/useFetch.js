@@ -11,10 +11,10 @@ const useFetch = (url) => {
       setIsLoading(true);
       setError(null);
       try {
-        const response = await axiosPrivate.get(url);
-        setData(response.data);
+        const res = await axiosPrivate.get(url);
+        setData(res.data);
       } catch (error) {
-        setError(error.message || "Something went wrong");
+        setError(error.message || "Something Went Wrong!");
       } finally {
         setIsLoading(false);
       }

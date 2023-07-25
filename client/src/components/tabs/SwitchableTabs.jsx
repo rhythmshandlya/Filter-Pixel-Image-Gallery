@@ -30,7 +30,6 @@ const SwitchableTabs = ({ children }) => {
       <div style={{ borderBottom: "2px solid white" }}></div>
       <div className="rounded-b-lg mt-4">
         {children?.map((child, index) => {
-          console.log(child);
           return (
             <div
               className={`p-4 ${

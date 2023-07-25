@@ -31,7 +31,6 @@ const SignupForm = () => {
 
     try {
       // Make the API call to signup using formData
-      console.log(formData);
       const res = await axiosPrivate.post("auth/signup", formData);
 
       // Handle the success response from the server
@@ -41,7 +40,6 @@ const SignupForm = () => {
         user: res.data.user,
         isAuthenticated: true,
       });
-      console.log(res.data);
       if (!res.data.token || !res.data.user) {
         setError(error.response?.data?.message || "An error occurred");
         return;
