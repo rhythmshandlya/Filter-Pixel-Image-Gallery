@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const config = require('./config');
 
 // Connect to the MongoDB server
-const uri = config.DATABASE_URI;
+const uri = config.MONGODB_URI;
+console.log(uri);
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
@@ -41,10 +42,4 @@ process.on('uncaughtException', (err) => {
   server.close(() => {
     process.exit(1);
   });
-});
-
-// Add a new middleware to the app
-app.use((req, res, next) => {
-  console.log('Request received:', req.method, req.url);
-  next();
 });

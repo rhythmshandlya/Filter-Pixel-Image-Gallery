@@ -1,41 +1,41 @@
 const express = require('express');
 const axios = require('axios');
-const cheerio = require('cheerio');
+const { google } = require('googleapis');
+const { catchAsync } = require('../util/catchAsync');
+const { GoogleAuth } = require('google-auth-library');
+const keys = require('./secrets.json');
 
-const app = express();
+async function getImagesFromDrive() {
+  const auth = new GoogleAuth({
+    scopes: 'https://www.googleapis.com/auth/drive'
+  });
 
-async function scrapeImagesFromURL(url) {
-  try {
-    const response = await axios.get(url);
-    const $ = cheerio.load(response.data);
-    const imageUrls = [];
+  // Create a Drive API client
+  const service = google.drive({ version: 'v3', auth });
 
-    $('img').each((index, element) => {
-      const imageUrl = $(element).attr('src');
-      if (imageUrl) {
-        imageUrls.push(imageUrl);
-      }
-    });
+  const files = [];
+  // Set the folder ID where your images are located in Google Drive
+  const folderId = '1_qOJ0z3kI_e2IJq4X6HqF0T1ROBESygS';
 
-    return imageUrls;
-  } catch (error) {
-    throw new Error('Error scraping images from the provided URL.');
-  }
+  // List the files in the folder
+  const response = await service.files.list({
+    q: `'${folderId}' in parents and mimeType contains 'image/'`,
+    fields: 'files(id, name, webViewLink)'
+  });
+
+  return response.data.files;
 }
 
-exports.getAllImages = async (req, res) => {
-  const { url } = req.query;
+exports.getAllImages = catchAsync(async (req, res) => {
+  let images = await getImagesFromDrive();
 
-  if (!url || !url.startsWith('https://photos.google.com')) {
-    return res
-      .status(400)
-      .json({ error: 'Invalid or missing Google Photos URL.' });
+  let imageLinks = [];
+  for (const image of images) {
+    imageLinks.push({ key: image.name, link: image.webViewLink });
   }
 
-  try {
-    const imageUrls = await scrapeImagesFromURL(url);
-    res.json({ images: imageUrls });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+  res.status(200).json({
+    status: 'success',
+    images: imageLinks
+  });
+});

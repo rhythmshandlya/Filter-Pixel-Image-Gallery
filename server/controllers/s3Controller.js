@@ -1,12 +1,16 @@
 const AppError = require('../util/AppError');
 const { catchAsync } = require('../util/catchAsync');
-
+const config = require('../config');
 const redis = require('redis');
 
 // Replace config.redisURI with your actual Redis URI or connection details
-const client = redis.createClient('redis://localhost:6379');
 
+const client = redis.createClient(config.REDIS_URI);
 client.connect();
+
+process.on('error', (error) => {
+  console.error('An error occurred:', error);
+});
 
 if (client.isOpen) {
   console.log('Connected to redisDB');
@@ -37,7 +41,6 @@ const getImagesFromBucket = async (bucketName) => {
     const cacheKey = `images:${bucketName}`;
     const cachedData = await client.get(cacheKey);
     if (cachedData) {
-      console.log('Fetching images from cache');
       return JSON.parse(cachedData);
     }
 
@@ -69,7 +72,6 @@ const getImagesFromBucket = async (bucketName) => {
 
     return images;
   } catch (err) {
-    console.log('Error', err);
     throw err;
   }
 };

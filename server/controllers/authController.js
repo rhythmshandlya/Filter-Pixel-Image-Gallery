@@ -64,7 +64,6 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError('please provide email and password', 400));
 
   const user = await User.findOne({ email }).select('+password');
-  console.log(user);
 
   if (!user) return next(new AppError('User Not Found!', 401));
 
@@ -88,7 +87,6 @@ exports.login = catchAsync(async (req, res, next) => {
 exports.googleAuth = async (req, res, next) => {
   const token = req.body.token;
   const payload = extractPayload(token);
-  console.log(payload);
 
   try {
     let user = await User.findOne({ email: payload.email });

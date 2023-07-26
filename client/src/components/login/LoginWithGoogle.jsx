@@ -24,7 +24,6 @@ const LoginWithGoogle = () => {
         logo_alignment="left"
         useOneTap={true}
         onSuccess={async (googleAuthCredentials) => {
-          console.log(googleAuthCredentials);
           try {
             const res = await axiosPrivate.post(
               `${process.env.REACT_APP_BACKEND_URL}/auth/google`,
@@ -32,7 +31,6 @@ const LoginWithGoogle = () => {
                 token: googleAuthCredentials.credential,
               }
             );
-            console.log(res.data);
             setAuth({
               token: res.data.token,
               user: res.data.user,
@@ -49,9 +47,7 @@ const LoginWithGoogle = () => {
             navigate("/login");
           }
         }}
-        onError={() => {
-          console.log("Try login with id and password!");
-        }}
+        onError={() => {}}
       />
     </div>
   );

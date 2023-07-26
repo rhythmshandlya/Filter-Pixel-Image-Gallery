@@ -29,14 +29,6 @@ const ImageGallery = () => {
     setCurrentPage(pageNumber);
   };
 
-  useEffect(() => {
-    // Scroll to the saved position of the LightGallery container after changing the page
-    const galleryContainer = galleryContainerRef.current;
-    if (galleryContainer) {
-      galleryContainer.scrollTo(0, galleryContainer.scrollTop);
-    }
-  }, [currentPage]);
-
   return (
     <div className="mx-auto mt-8" ref={galleryContainerRef}>
       {isLoading ? (

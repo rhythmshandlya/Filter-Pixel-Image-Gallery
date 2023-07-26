@@ -4,6 +4,6 @@ const driveController = require('../controllers/driveController');
 
 const router = express.Router();
 
-router.route('/').get(driveController.getAllImages);
+router.route('/').get(protect, driveController.getAllImages);
 
 module.exports = router;

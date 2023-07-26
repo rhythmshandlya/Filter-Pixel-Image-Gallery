@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { axiosPrivate } from "../../api/axios";
 
 const LoginForm = () => {
-  const { auth, setAuth } = useAuth();
+  const { setAuth } = useAuth();
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
@@ -37,9 +37,7 @@ const LoginForm = () => {
         "Authorization"
       ] = `Bearer ${res.data.token}`;
       navigate("/");
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   };
 
   return (

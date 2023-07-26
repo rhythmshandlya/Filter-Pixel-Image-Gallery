@@ -1,0 +1,45 @@
+version: "3"
+services:
+  client:
+    # Build the client app using the Dockerfile.client
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    # Map the container's port 80 to a host port (e.g., 3000) if needed
+    ports:
+      - "3000:80"
+
+  server:
+    # Build the server app using the Dockerfile.server
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    # Map the container's port 8000 to a host port (e.g., 8000) if needed
+    ports:
+      - "8000:8000"
+    # Link the server container to the Redis container
+    depends_on:
+      - redis
+    # Set environment variables for the server app
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/filterpixel
+      - REDIS_URI=redis://redis:6379
+
+  # Redis container
+  redis:
+    image: "redis:latest"
+    container_name: "redis"
+    command: ["redis-server", "--bind", "redis", "--port", "6379"]
+
+  # MongoDB container
+  mongo:
+    image: "mongo:latest"
+    container_name: "mongodb"
+    # Mount a volume to persist data between container restarts
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:
+    # Volume configuration for MongoDB data persistence
+    driver: local
