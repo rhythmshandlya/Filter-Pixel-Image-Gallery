@@ -17,15 +17,17 @@ The aim of this project is to create an image gallery for FilterPixel, accessibl
 
 ## Features and Points
 
-- Gallery Front-end
-- Pagination
-- Google Login & Sign-up
-- Username & Password-based Login & Sign-up
--
-- Fetch Images from S3 Bucket
-- Fetch Images from Google Drive
-- Code Quality
-- UI/UX
+- Gallery front-end with image interaction options like zoom in and out, rotate.
+- Server Side Pagination, and client side rendering of the pages.
+- Google Login & Sign-up, one tap log in, render users profile(name, image and email) from his gmail account.
+- Email/Username & Password-based Login & Sign-up using JWT(OAuth)
+- MVC architecture on server side.
+- React custom hooks, private routers, Auth/NoAuth required routes.
+- Protected Routing on both Server side for all endpoints.
+- Persistent Optimized authorization on client side.
+- Fetch Images from S3 Bucket And Cash Them For 30min(redis).
+
+- Fetch Images from Google Drive Not Implemented
 
 ## Getting Started
 
@@ -38,6 +40,8 @@ The aim of this project is to create an image gallery for FilterPixel, accessibl
 4. Set up Google API credentials:
 
 5. Run the development server:
+
+- Dockerfiles not optimal for use yet
 
 ## Folder Structure
 
