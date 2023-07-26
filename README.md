@@ -25,6 +25,7 @@ The aim of this project is to create an image gallery for FilterPixel, accessibl
 ![image](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/514b33e0-d145-437a-be12-6a90f5d7c8b8)
 ![image](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/acd245e8-a144-4295-bf3e-1d2cd7cbf7d7)
 ![image](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/5debc673-74b6-498b-84e7-b5d621f9a485)
+![s](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/cfebf470-5425-4964-8360-ee4dd5b61a25)
 
 ## Getting Started
 
@@ -32,13 +33,30 @@ The aim of this project is to create an image gallery for FilterPixel, accessibl
 
 2. Install the required dependencies:
 
-3. Set up the back end and database:
+```shell
+    npm install && npm run install
+```
 
-4. Set up Google API credentials:
+3.Set up the back end and database:
+make sure redis and mongoDB is running locally.
 
-5. Run the development server:
+4.Set up Google API credentials And Env Variables:
+Copy google API credentials into a secret.json file and add env variable GOOGLE_APPLICATION_CREDENTIALS to your env.
 
-- Dockerfiles are not optimal for use yet
+5.Run the development server:
+
+if you want them to run concurrently
+
+```shell
+    npm start
+```
+
+else
+
+```shell
+    cd client &&  npm start
+    cd server && npm start
+```
 
 ## Folder Structure
 
