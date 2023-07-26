@@ -47,3 +47,11 @@ The aim of this project is to create an image gallery for FilterPixel, accessibl
 
 - `client/`: Contains the front-end source code
 - `server/`: Contains the back-end source code
+
+  ![image](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/56652c60-aab4-4a41-ac33-c1542aa46d6e)
+  ![image](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/a2372fa2-38a3-4743-b399-a72d524bc95f)
+  ![image](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/63ac32c1-44ce-46b5-a715-001fb60cd9d3)
+  ![image](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/13f4e51f-3663-4331-a7d6-dad8dc2abf2a)
+
+
+
