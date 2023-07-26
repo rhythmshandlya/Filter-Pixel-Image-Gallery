@@ -126,28 +126,10 @@ exports.googleAuth = async (req, res, next) => {
 };
 
 exports.protect = catchAsync(async (req, res, next) => {
-  let token = '';
-  if (
-    (req.headers.authorization &&
-      req.headers.authorization.startsWith('Bearer')) ||
-    req.cookies.jwt
-  ) {
-    token = req.cookies.jwt || req.headers.authorization.split(' ')[1];
-  }
-  if (!token) return next(new AppError('Please login to get access.', 401));
-
-  const payLoad = await promisify(jwt.verify)(token, process.env.JWT);
+  let token = req.headers.authorization.split(' ')[1];
+  const payLoad = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
   const user = await User.findById(payLoad.id).select('+isVerified');
-  if (!user.isVerified)
-    return next(
-      new AppError('Please verify your email to access this route', 401)
-    );
-
-  if (!user) return next(new AppError('User does not exists any longer', 401));
-
-  if (user.changedPassword(payLoad.iat)) {
-    return next(new AppError('Password was changed, please login again', 401));
-  }
+  if (!user) return next(new AppError('User not found', 401));
   req.user = user;
   next();
 });

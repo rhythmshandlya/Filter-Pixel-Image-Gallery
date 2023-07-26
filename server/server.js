@@ -4,7 +4,6 @@ const config = require('./config');
 
 // Connect to the MongoDB server
 const uri = config.MONGODB_URI;
-console.log(uri);
 
 mongoose.connect(uri, {
   useNewUrlParser: true,

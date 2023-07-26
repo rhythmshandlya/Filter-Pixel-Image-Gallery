@@ -8,10 +8,6 @@ const redis = require('redis');
 const client = redis.createClient(config.REDIS_URI);
 client.connect();
 
-process.on('error', (error) => {
-  console.error('An error occurred:', error);
-});
-
 if (client.isOpen) {
   console.log('Connected to redisDB');
 } else {
