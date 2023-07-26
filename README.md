@@ -41,11 +41,12 @@ The aim of this project is to create an image gallery for FilterPixel, accessibl
 make sure redis and mongoDB is running locally.
 
 4.Set up Google API credentials And Env Variables:
-Copy google API credentials into a secret.json file and add env variable GOOGLE_APPLICATION_CREDENTIALS to your env.
 
-5.Run the development server:
+- Copy google API credentials into a secret.json file and add env variable GOOGLE_APPLICATION_CREDENTIALS to your env.
 
-if you want them to run concurrently
+  5.Run the development server:
+
+- if you want them to run concurrently
 
 ```shell
     npm start
