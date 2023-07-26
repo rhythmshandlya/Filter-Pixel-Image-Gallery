@@ -17,8 +17,8 @@ const ImageItem = ({ src, subHtml }) => (
   </a>
 );
 
-const ImageGallery = () => {
-  const [URL, setURL] = useState("/s3?page=1&limit=6");
+const ImageGallery = ({ initialURL }) => {
+  const [URL, setURL] = useState(initialURL);
   const { data, isLoading, error } = useFetch(URL);
   const [currentPage, setCurrentPage] = useState(1);
 

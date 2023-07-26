@@ -34,7 +34,7 @@ const LoginForm = () => {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       axiosPrivate.defaults.headers.common[
-        "Authorization"
+        "authorization"
       ] = `Bearer ${res.data.token}`;
       navigate("/");
     } catch (e) {}

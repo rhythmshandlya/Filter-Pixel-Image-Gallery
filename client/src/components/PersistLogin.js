@@ -21,11 +21,10 @@ const PersistLogin = () => {
         return false;
       }
       setAuth({
-        user,
-        token,
+        token: token,
+        user: user,
         isAuthenticated: true,
       });
-      return true;
     };
 
     auth?.isAuthenticated ? setIsLoading(false) : verifyStorage();
