@@ -23,7 +23,7 @@ async function scrapeImagesFromURL(url) {
   }
 }
 
-app.get('/api/images', async (req, res) => {
+exports.getAllImages = async (req, res) => {
   const { url } = req.query;
 
   if (!url || !url.startsWith('https://photos.google.com')) {
@@ -38,4 +38,4 @@ app.get('/api/images', async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-});
+};

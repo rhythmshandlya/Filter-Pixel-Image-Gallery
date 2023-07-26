@@ -34,7 +34,7 @@ const SwitchableTabs = ({ children }) => {
             <div
               className={`p-4 ${
                 activeTab === index + 1 ? "block" : "hidden"
-              } transition-opacity duration-300`}
+              } transition-opacity duration-300 text-center`}
             >
               {child}
             </div>

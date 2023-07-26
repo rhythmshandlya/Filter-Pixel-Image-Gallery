@@ -47,7 +47,7 @@ const ImageGallery = () => {
         data && (
           <>
             <LightGallery plugins={[lgZoom, lgVideo, lgRotate]} mode="lg-fade">
-              {[...data.images].map((image, index) => (
+              {data?.images.map((image, index) => (
                 <ImageItem key={index} src={image.link} subHtml={image.key} />
               ))}
             </LightGallery>
