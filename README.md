@@ -27,6 +27,8 @@ The aim of this project is to create an image gallery for FilterPixel, accessibl
 ![image](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/5debc673-74b6-498b-84e7-b5d621f9a485)
 ![s](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/cfebf470-5425-4964-8360-ee4dd5b61a25)
 
+I have removed nodemon, if you have it downloaded kindly change the script.
+
 ## Getting Started
 
 1. Clone the repository: [https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery]
