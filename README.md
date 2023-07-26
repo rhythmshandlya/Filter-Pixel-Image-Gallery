@@ -12,7 +12,7 @@ The aim of this project is to create an image gallery for FilterPixel, accessibl
 
 ## Tech Stack
 
-- Front-end: [Next.js | Javascript]
+- Front-end: [React | Javascript]
 - Back-end: [Express | Javascript]
 
 ## Features and Points
