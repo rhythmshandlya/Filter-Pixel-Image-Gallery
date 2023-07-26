@@ -1,44 +1,41 @@
-const { google } = require('googleapis');
-const { GoogleAuth } = require('google-auth-library');
-const { catchAsync } = require('../util/catchAsync');
+const express = require('express');
+const axios = require('axios');
+const cheerio = require('cheerio');
 
-async function getAllImages(req, res) {
+const app = express();
+
+async function scrapeImagesFromURL(url) {
   try {
-    // Get credentials and build service
-    // TODO (developer) - Use appropriate auth mechanism for your app
-    const auth = new GoogleAuth({
-      scopes: 'https://www.googleapis.com/auth/drive'
-    });
-    const service = google.drive({ version: 'v3', auth });
-    const files = [];
+    const response = await axios.get(url);
+    const $ = cheerio.load(response.data);
+    const imageUrls = [];
 
-    const response = await service.files.list({
-      q: "mimeType='image/jpeg'",
-      fields: 'nextPageToken, files(id, name)',
-      spaces: 'drive'
-    });
-
-    Array.prototype.push.apply(files, response.data.files);
-
-    response.data.files.forEach(function (file) {
-      console.log('Found file:', file.name, file.id);
-    });
-
-    res.status(200).json({
-      status: 'success',
-      data: {
-        images: response.data.files
+    $('img').each((index, element) => {
+      const imageUrl = $(element).attr('src');
+      if (imageUrl) {
+        imageUrls.push(imageUrl);
       }
     });
+
+    return imageUrls;
   } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      status: 'error',
-      message: 'Internal Server Error'
-    });
+    throw new Error('Error scraping images from the provided URL.');
   }
 }
 
-module.exports = {
-  getAllImages
-};
+app.get('/api/images', async (req, res) => {
+  const { url } = req.query;
+
+  if (!url || !url.startsWith('https://photos.google.com')) {
+    return res
+      .status(400)
+      .json({ error: 'Invalid or missing Google Photos URL.' });
+  }
+
+  try {
+    const imageUrls = await scrapeImagesFromURL(url);
+    res.json({ images: imageUrls });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});

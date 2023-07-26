@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import LightGallery from "lightgallery/react";
 import lgZoom from "lightgallery/plugins/zoom";
 import lgVideo from "lightgallery/plugins/video";
@@ -22,13 +22,23 @@ const ImageGallery = () => {
   const { data, isLoading, error } = useFetch(URL);
   const [currentPage, setCurrentPage] = useState(1);
 
+  const galleryContainerRef = useRef(null);
+
   const handlePageChange = (pageNumber) => {
     setURL(`/s3?page=${pageNumber}&limit=6`);
     setCurrentPage(pageNumber);
   };
 
+  useEffect(() => {
+    // Scroll to the saved position of the LightGallery container after changing the page
+    const galleryContainer = galleryContainerRef.current;
+    if (galleryContainer) {
+      galleryContainer.scrollTo(0, galleryContainer.scrollTop);
+    }
+  }, [currentPage]);
+
   return (
-    <div className="mx-auto mt-8">
+    <div className="mx-auto mt-8" ref={galleryContainerRef}>
       {isLoading ? (
         <div>Loading...</div>
       ) : error ? (

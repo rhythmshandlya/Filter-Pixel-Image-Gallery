@@ -1,0 +1,20 @@
+# Base image with Node.js for the Express server
+FROM node:latest as build-server
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy package.json and package-lock.json to the container
+COPY server/package*.json ./
+
+# Install server app dependencies
+RUN npm install
+
+# Copy the server application files to the container
+COPY server/ ./
+
+# Expose the server port (change the port number if required)
+EXPOSE 8000
+
+# Start the Express server
+CMD ["npm", "start"]
