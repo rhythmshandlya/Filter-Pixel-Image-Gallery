@@ -24,6 +24,8 @@ The aim of this project is to create an image gallery for FilterPixel, accessibl
   ![image](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/514b33e0-d145-437a-be12-6a90f5d7c8b8)
   ![image](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/acd245e8-a144-4295-bf3e-1d2cd7cbf7d7)
   ![image](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/5debc673-74b6-498b-84e7-b5d621f9a485)
+  ![s](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/cfebf470-5425-4964-8360-ee4dd5b61a25)
+
 
 
 ## Getting Started
