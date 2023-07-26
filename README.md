@@ -13,6 +13,7 @@ The aim of this project is to create an image gallery for FilterPixel, accessibl
 - Protected Routing on both Server sides for all endpoints.
 - Persistent Optimized authorization on the client side.
 - Fetch Images from S3 Bucket And Cash Them For 30min(redis).
+- Fetch Images from Google Drive Not Implemented
 
 ## Tech Stack
 
@@ -20,12 +21,10 @@ The aim of this project is to create an image gallery for FilterPixel, accessibl
 - Back-end: [Express | Javascript]
 
 ## Screen Shots
-  ![image](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/56652c60-aab4-4a41-ac33-c1542aa46d6e)
-  ![image](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/a2372fa2-38a3-4743-b399-a72d524bc95f)
-  ![image](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/63ac32c1-44ce-46b5-a715-001fb60cd9d3)
-  ![image](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/13f4e51f-3663-4331-a7d6-dad8dc2abf2a)
+  ![image](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/514b33e0-d145-437a-be12-6a90f5d7c8b8)
+  ![image](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/acd245e8-a144-4295-bf3e-1d2cd7cbf7d7)
+  ![image](https://github.com/rhythmshandlya/Filter-Pixel-Image-Gallery/assets/72724768/5debc673-74b6-498b-84e7-b5d621f9a485)
 
-- Fetch Images from Google Drive Not Implemented
 
 ## Getting Started
 
