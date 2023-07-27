@@ -58,16 +58,18 @@ async function getImagesFromDrive() {
 
 exports.getAllImages = catchAsync(async (req, res) => {
   const page = parseInt(req.query.page) || 1;
-  const limit = parseInt(req.query.limit) || 10;
+  const limit = parseInt(req.query.limit) || 6;
 
   let images = await getImagesFromDrive();
 
   const totalImages = images.length;
   const totalPages = Math.ceil(totalImages / limit);
 
-  const startIndex = (page - 1) * limit;
-  const endIndex = page * limit;
-  images = images.slice(startIndex, endIndex);
+  if (limit !== 10) {
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+    images = images.slice(startIndex, endIndex);
+  }
 
   let imageLinks = [];
   for (const image of images) {

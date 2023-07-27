@@ -4,11 +4,12 @@ import useAuth from "./useAuth";
 
 // Set default headers for all Axios requests
 
-const useFetch = (url) => {
+const useFetch = (url, isInfinite) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const { auth, setAuth } = useAuth();
+  const { auth } = useAuth();
+
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);

@@ -90,7 +90,8 @@ exports.getAllImages = catchAsync(async (req, res) => {
   // Apply pagination and limit the number of images
   const startIndex = (page - 1) * limit;
   const endIndex = page * limit;
-  const images = allImages.slice(startIndex, endIndex);
+  const images =
+    limit !== 10 ? allImages.slice(startIndex, endIndex) : allImages;
 
   // Extract the image links from the retrieved images and create an array of links
   const imageLinks = images.map((image) => {
