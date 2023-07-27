@@ -57,8 +57,8 @@ make sure redis and mongoDB is running locally.
 else
 
 ```shell
-    cd client &&  npm start
-    cd server && npm start
+    npm run client
+    npm run server
 ```
 
 ## Folder Structure
