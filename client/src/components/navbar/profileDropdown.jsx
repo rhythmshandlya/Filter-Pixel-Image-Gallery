@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import ToggleButton from "../DarkModeSwitch";
 
 const DropdownMenu = ({ icon }) => {
   const { setAuth } = useAuth();
@@ -53,6 +54,10 @@ const DropdownMenu = ({ icon }) => {
               }}
             >
               Logout
+            </div>
+
+            <div className="px-4 py-3 hover:bg-white hover:text-black cursor-pointer">
+              <ToggleButton />
             </div>
           </div>
         </div>

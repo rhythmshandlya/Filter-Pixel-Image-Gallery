@@ -9,28 +9,31 @@ import Home from "./pages/Home";
 import RequireAuth from "./components/RequireAuth";
 import PersistLogin from "./components/PersistLogin";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { DarkModeProvider } from "./context/darkModeContext";
 
 const App = () => {
   return (
-    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}>
-      <AuthProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-            </Route>
-            <Route element={<PersistLogin />}>
-              <Route element={<RequireAuth />}>
-                <Route path="/" element={<Layout />}>
-                  <Route index element={<Home />} />
+    <DarkModeProvider>
+      <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}>
+        <AuthProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+              </Route>
+              <Route element={<PersistLogin />}>
+                <Route element={<RequireAuth />}>
+                  <Route path="/" element={<Layout />}>
+                    <Route index element={<Home />} />
+                  </Route>
                 </Route>
               </Route>
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </AuthProvider>
-    </GoogleOAuthProvider>
+            </Routes>
+          </BrowserRouter>
+        </AuthProvider>
+      </GoogleOAuthProvider>
+    </DarkModeProvider>
   );
 };
 
