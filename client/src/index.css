@@ -38,3 +38,9 @@ button {
     height: auto;
   }
 }
+
+#google-btn div div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

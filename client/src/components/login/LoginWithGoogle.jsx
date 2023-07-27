@@ -15,14 +15,15 @@ const LoginWithGoogle = () => {
   });
 
   return (
-    <div className="bg-white p-2">
+    <div className="bg-white p-2" id="google-btn">
       <GoogleLogin
         size="large"
         shape="rectangular"
-        width="500px"
+        width="480px"
         theme="filled_black"
         logo_alignment="left"
         useOneTap={true}
+        allowed_parent_origin=""
         onSuccess={async (googleAuthCredentials) => {
           try {
             const res = await axiosPrivate.post(
