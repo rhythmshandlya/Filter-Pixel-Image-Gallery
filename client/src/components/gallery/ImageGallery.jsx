@@ -25,7 +25,7 @@ const ImageGallery = ({ initialURL }) => {
   const galleryContainerRef = useRef(null);
 
   const handlePageChange = (pageNumber) => {
-    setURL(`/s3?page=${pageNumber}&limit=6`);
+    setURL(`/drive?page=${pageNumber}&limit=6`);
     setCurrentPage(pageNumber);
   };
 
